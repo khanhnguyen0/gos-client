@@ -3,6 +3,8 @@ var webpack = require('webpack');
 
 module.exports = {
             entry: [
+              'webpack-dev-server/client?http://localhost:8080', // WebpackDevServer host and port
+              'webpack/hot/dev-server',
               './source/App.js'
             ],
             output: {
@@ -11,11 +13,11 @@ module.exports = {
 }, module: {
               loaders: [{
                 test: /\.jsx?$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-        		query: {
-          			presets: ['es2015', 'react']
-        }
+                loaders: ['react-hot','babel-loader?presets[]=es2015,presets[]=react'],
+                exclude: /node_modules/
 
-}] }
+}] },
+plugins: [
+  new webpack.HotModuleReplacementPlugin()
+]
 };
