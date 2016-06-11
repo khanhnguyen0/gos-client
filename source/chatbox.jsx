@@ -4,6 +4,8 @@ import User from './username.jsx';
 import Chatrow from './chat-row.jsx';
 import $ from 'jquery'
 
+let API ='https://dry-gorge-31633.herokuapp.com/api/messages/'
+
 class Chatbox extends React.Component{		
 	constructor(props){
 		super(props);
@@ -15,7 +17,7 @@ class Chatbox extends React.Component{
 	}
 	handleSubmit(user,message){
 		console.log(this.state.list);
-		$.post('http://localhost:3000/api/messages',{
+		$.post(API,{
 			user: user,
 			message: message
 		}, function(data){
@@ -33,7 +35,7 @@ class Chatbox extends React.Component{
 		var self = this;
 		console.log('updated');
 		var newList = [];
-		$.get('http://localhost:3000/api/messages',function(data){
+		$.get(API,function(data){
 			console.log(data);
 			data.map(function(m){
 				newList.push(<Chatrow user = {m.user} message = {m.message}/>);
