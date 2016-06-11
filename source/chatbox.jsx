@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import User from './username.jsx';
 import Chatrow from './chat-row.jsx';
+import $ from 'jquery'
+
 class Chatbox extends React.Component{		
 	constructor(props){
 		super(props);
@@ -9,15 +11,38 @@ class Chatbox extends React.Component{
 			list :[]
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.update = this.update.bind(this);
 	}
 	handleSubmit(user,message){
-		console.log("clicked");
-		var newList = this.state.list;
-		newList.push(<Chatrow user = {user} message = {message}/>);
-		this.setState({
-			list:newList
-		});
 		console.log(this.state.list);
+		$.post('http://localhost:3000/api/messages',{
+			user: user,
+			message: message
+		}, function(data){
+			console.log(data)
+		});
+		
+	}
+	componentDidMount(){
+		var self = this;
+		setInterval(function () {
+			self.update();
+		},500);
+	}
+	update(){
+		var self = this;
+		console.log('updated');
+		var newList = [];
+		$.get('http://localhost:3000/api/messages',function(data){
+			console.log(data);
+			data.map(function(m){
+				newList.push(<Chatrow user = {m.user} message = {m.message}/>);
+			});
+			self.setState({
+						list:newList
+				});
+		});
+		
 	}
 	render(){
 		return (

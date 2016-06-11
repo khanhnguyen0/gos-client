@@ -16,16 +16,19 @@ class User extends React.Component{
   		this.setState({user:this.refs.input.value});
   	}
 
-  	onSubmit(){
-  		// console.log("clicked");
+  	onSubmit(e){
+
+  		e.preventDefault();
 		this.props.handleSubmit(this.refs.input.value,this.refs.message.value);
 	}
 
 	render (){
 		return (<div>
+			<form onSubmit = {this.onSubmit} id ="input">
 				<input type= "text" placeholder = "asd"  onChange = {this.onChange} ref="input"/>
 				<input type="text" placeholder = "message" ref = "message"/>
-				<input type="submit" onClick = {this.onSubmit} />
+				<input type="submit" />
+			</form>	
 				</div>
 		);
 	}
