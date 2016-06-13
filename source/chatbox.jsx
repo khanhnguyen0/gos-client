@@ -49,7 +49,7 @@ class Chatbox extends React.Component{
 	render(){
 		return (
 			<div>
-				<User handleSubmit = {this.handleSubmit}/>
+				<User user ={this.props.user} handleSubmit = {this.handleSubmit}/>
 				{this.state.list}
 			</div>
 			);
@@ -57,4 +57,6 @@ class Chatbox extends React.Component{
 
 }
 
-ReactDOM.render(<Chatbox/>,document.getElementById('root'));
+export default Chatbox;
+
+// ReactDOM.render(<Chatbox/>,document.getElementById('root'));
