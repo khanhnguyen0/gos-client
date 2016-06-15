@@ -27,8 +27,10 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "date-format": "0.0.2",
     "jquery": "^3.0.0",
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "socket.io-client": "^1.4.6"
   }
 }

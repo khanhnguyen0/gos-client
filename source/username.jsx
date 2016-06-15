@@ -5,16 +5,11 @@ import Chatrow from  './chat-row.jsx';
 class User extends React.Component{
 	constructor(props) {
 		super(props);
-		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
     	
   }
-  	onChange(){
-  		this.setState({user:this.refs.input.value});
-  	}
 
   	onSubmit(e){
-
   		e.preventDefault();
 		this.props.handleSubmit(this.props.user,this.refs.message.value);
 		this.refs.message.value="";
@@ -23,10 +18,14 @@ class User extends React.Component{
 	render (){
 		return (<div>
 			<form onSubmit = {this.onSubmit} id ="input">
-				<p>{this.props.user}</p>
-				<input type="text" placeholder = "message" ref = "message"/>
+				<h3>{this.props.user}</h3>
+				<input type="text" placeholder = "message" onBlur = {this.props.handleChange} ref = "message"/>
 				<input type="submit" />
+				<button className = "btn btn-default" onClick = {this.props.logout}>  
+				Logout
+			</button>
 			</form>	
+
 				</div>
 		);
 	}

@@ -74,11 +74,12 @@ class Register extends React.Component{
 	}
 
 	render(){
-		return (<div>  
-							<form onSubmit = {this.handleSubmit}>  
-								<input type = "text" ref = "username" placeholder="User" onChange = {this.handleUserChange}/>
-								<input type = "password" ref = "password" placeholder = "password"/>
-								<input type = "password" ref = "password2" placeholder = "retype password" onChange = {this.onChange}/>
+		return (<div className = "container">  
+							<form className = "form-signin" onSubmit = {this.handleSubmit}>  
+								<h2 className = "form-signin-heading">Registration</h2>
+								<input type = "text" ref = "username" className = "form-control" placeholder="User" onBlur = {this.handleUserChange}/>
+								<input type = "password" ref = "password" className = "form-control" placeholder = "password"/>
+								<input type = "password" ref = "password2" className = "form-control" placeholder = "retype password" onBlur = {this.onChange}/>
 								<input type = "submit"/>
 							</form>
 							{this.state.status}
